@@ -1,4 +1,4 @@
-# Transferable skills workshops - Good practicies for reproducible open source code
+# Transferable Skills Workshops - Good Practicies for Reproducible Open Source Code
 
 ## Introduction
 
