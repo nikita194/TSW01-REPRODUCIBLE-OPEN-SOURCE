@@ -24,7 +24,12 @@ This approach enhances the quality of our work and opens the door to effective c
 
 ### Tasks
 #### 1️⃣ - Initialise the lab
-*TBD: either instructions about forking the repository or GitHub Classrooms.*
+
+* If you are doing this lab as part of a Github Classroom assignment, you can skip to task 2.
+* If you are doing this lab independantly:
+  * *fork* this repository using the fork button at the top of this repository.
+  * From your forked repository, click on `main -> view all branches -> new branch`, and name the new branch `feedback`.
+  * Create a pull request in your forked repository from branch `main` to branch `feedback`. Do not close it now!
 
 #### 2️⃣ - Build a list of dependencies with Poetry
 *TBD*
