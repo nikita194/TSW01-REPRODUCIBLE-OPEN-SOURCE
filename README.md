@@ -15,7 +15,9 @@ This approach enhances the quality of our work and opens the door to effective c
 
 ## Prerequisites
 
-✅ Please make sure that you have gone through the checklist in [TSW00-LABS-PREREQUISITES](https://github.com/UCL-Photonics-Society/TSW00-LABS-PREREQUISITES).
+> [!IMPORTANT]  
+> Please make sure that you have gone through the checklist in [TSW00-LABS-PREREQUISITES](https://github.com/UCL-Photonics-Society/TSW00-LABS-PREREQUISITES).
+
 
 
 ## Lab instructions
@@ -23,8 +25,8 @@ This approach enhances the quality of our work and opens the door to effective c
 *TBD: details about how to use the pull request to assess progress and completions of tasks.*
 
 ### Tasks
-#### 1️⃣ - Initialise the lab
 
+#### 1️⃣ - Initialise the lab
 * If you are doing this lab as part of a Github Classroom assignment, you can skip to task 2.
 * If you are doing this lab independantly:
   * *fork* this repository using the fork button at the top of this repository.
