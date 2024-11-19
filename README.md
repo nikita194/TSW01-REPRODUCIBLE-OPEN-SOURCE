@@ -27,28 +27,60 @@ Althought the code is functional (you see for yourself by running the command `p
 Step-by-step, we are going to restructure this project in order to make it complient with best practices, ensuring readability and reproducibility.
 
 > [!TIP]
-> We have created an autograding script that allows you to visualise your progress. To do so, simply go to the open Pull request `main->feedback` created in task#1.
+> We have created an autograding script that allows you to visualise your progress. To do so, simply go to the open Pull request `main->feedback` created in task#0.
 
 
 
 ### Tasks
 
-#### 1️⃣ - Initialise the lab
+#### 0️⃣ - Initialise the lab
 >[!NOTE]
-> If you are doing this lab as a Github Classroom assignment part of an official workshop, skip to task 2.
+> If you are doing this lab as a Github Classroom assignment part of an official workshop, skip to task 1.
 
   * *fork* this repository using the fork button at the top of this repository.
   * From your forked repository, click on `main -> view all branches -> new branch`, and name the new branch `feedback`.
   * Create a pull request in your forked repository from branch `main` to branch `feedback`. Do not close it now!
 
-#### 2️⃣ - Build a list of dependencies with Poetry
-*TBD*
 
-#### 3️⃣ - Restructure repository 
+
+#### 1️⃣ - Restructure repository 
+In this task, you must restructure the repository following the best practice of python package structure for a librairy. We will call this librairy `opticaldisp`.
+
 >[!CAUTION]
-> The folder `.github/workflows/` contains the autograding script that assesses your progression and displays it in the pull request.
-> 
-> **Do not change anything in it**.
+> The folder `.github/workflows/` contains the autograding script that assesses your progression and displays it in the pull request, it must not be modified.
+
+* Make the codebase modular:
+  * Create a `waveforms.py` file, and move all the waveform generating functions found in `main.py` there.
+  * Create a `dispersion.py` file, and move the function `apply_dispersion` there.
+  * Create a `optical_signals.py` file, and move the class `OpticalSignal`.
+* Group all the files containing functions and classes into a `src/opticaldisp/` folder.
+* Add imports to your python files:
+  * In `waveform.py`, `dispersion.py`, and `optical_signals.py`, import the specific python packages that are used by the functions and classes used in their respective files.
+  * In `main.py`, import the functions and classes you moved to `waveform.py`, `dispersion.py`, and `optical_signals.py`. For example, if you want to import the class `OpticalSignal` in `main.py`, use `from src.opticaldisp.optical_signals import OpticalSignal`
+ 
+>[!TIP]
+> Run `python main.py` to check if you have handled imports successfully.
+
+For this task to be completed, you must be able to run `python main.py` without errors, and the repository must have the following structure:
+
+```plaintext
+├── tsw01
+│   ├── src
+│   │   ├── opticaldisp
+│   │   │   ├── waveforms.py
+│   │   │   ├── optical_signals.py
+│   │   │   ├── dispersion.py
+│   ├── .github
+│   │   ├── workflows
+│   │   │   ├── autograding.yml
+│   ├── main.py
+│   ├── README.md
+│   ├── .gitignore
+```
+
+#### 2️⃣ - Build a list of dependencies with Poetry
+
+#### 3️⃣ - Linting and formatting
 
 
 
@@ -62,5 +94,13 @@ Step-by-step, we are going to restructure this project in order to make it compl
 *TBD*
 
 ## Contributions
-*TBD: Main contributors / maintainers.*
-*TBD: Guide for using issues to suggest edits and improvements*
+### Contributors
+* [David Gerard](https://github.com/David-GERARD) - PhD student @ UCL
+* [Mikulas Poul](https://github.com/mikicz) - Staff engineer @ Xelix
+
+> [!TIP]
+> * If you encounter a bug, please let us know using the [Issues tab](https://github.com/UCL-Photonics-Society/TSW01-REPRODUCIBLE-OPEN-SOURCE/issues).
+> * If you have improvement ideas, *fork* the repository, implement them, and create a pull request in which you provide a detailed changelog and the motivations for it.
+
+### Maintainers
+If need be, you can reach out to [David Gerard](https://github.com/David-GERARD) at david.gerard.23@ucl.ac.uk.
