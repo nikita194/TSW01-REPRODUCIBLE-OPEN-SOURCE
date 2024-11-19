@@ -18,17 +18,25 @@ This approach enhances the quality of our work and opens the door to effective c
 > [!IMPORTANT]  
 > Please make sure that you have gone through the checklist in [TSW00-LABS-PREREQUISITES](https://github.com/UCL-Photonics-Society/TSW00-LABS-PREREQUISITES).
 
-
-
 ## Lab instructions
+
 ### How does the lab works?
-*TBD: details about how to use the pull request to assess progress and completions of tasks.*
+This repository contains python files that can be used to generate different optical signals, and study the effect of dispersion during propagation in a fiber.
+Althought the code is functional (you see for yourself by running the command `python main.py` in a terminal), this python project doesn't follow the good practices of open-source software development.
+
+Step-by-step, we are going to restructure this project in order to make it complient with best practices, ensuring readability and reproducibility.
+
+> [!TIP]
+> We have created an autograding script that allows you to visualise your progress. To do so, simply go to the open Pull request `main->feedback` created in task#1.
+
+
 
 ### Tasks
 
 #### 1️⃣ - Initialise the lab
-* If you are doing this lab as part of a Github Classroom assignment, you can skip to task 2.
-* If you are doing this lab independantly:
+>[!NOTE]
+> If you are doing this lab as a Github Classroom assignment part of an official workshop, skip to task 2.
+
   * *fork* this repository using the fork button at the top of this repository.
   * From your forked repository, click on `main -> view all branches -> new branch`, and name the new branch `feedback`.
   * Create a pull request in your forked repository from branch `main` to branch `feedback`. Do not close it now!
@@ -37,7 +45,12 @@ This approach enhances the quality of our work and opens the door to effective c
 *TBD*
 
 #### 3️⃣ - Restructure repository 
-*TBD*
+>[!CAUTION]
+> The folder `.github/workflows/` contains the autograding script that assesses your progression and displays it in the pull request.
+> 
+> **Do not change anything in it**.
+
+
 
 #### 4️⃣ - Add a LICENCE file
 *TBD*
