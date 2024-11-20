@@ -207,7 +207,35 @@ git push
 
 #### 5️⃣ - Add a LICENSE File
 
-*(Coming soon.)*
+You can easily add a license file directly in your repository on GitHub. Follow these steps:
+
+1. **Open the Repository**
+   - Ensure you are on the **main page** of your repository on GitHub.
+
+2. **Add a New File**
+   - Click on the **"Add file"** button at the top right of the file list.
+   - From the dropdown menu, select **"Create new file"**.
+
+3. **Name the File**
+   - In the **"Name your file..."** field, type `LICENSE`.
+
+4. **Choose a License Template**
+   - At the top right of the editor, click **"Choose a license template"**.
+   - Select the **MIT License** from the list.
+
+5. **Customize the License**
+   - GitHub will populate the file with the MIT License text.
+   - Replace `<year>` with the current year.
+   - Replace `<copyright holder>` with your name (e.g., `2024 John Doe`).
+
+6. **Commit the LICENSE File**
+   - Scroll down to the "Commit changes" section.
+   - Add a commit message, such as:
+     ```plaintext
+     docs: add MIT License
+     ```
+   - Select **"Commit directly to the main branch"**.
+   - Click **"Commit new file"**.
 
 ---
 
