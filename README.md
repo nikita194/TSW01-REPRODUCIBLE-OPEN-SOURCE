@@ -139,7 +139,7 @@ Make the repository modular, following best practices:
    ```
 
 > [!TIP] 
-> The final repository structure should look like this:  
+> At this stage, the repository structure should look like this:  
 
 ```plaintext
 ├── tsw01
@@ -171,8 +171,6 @@ Make the repository modular, following best practices:
 #### 4️⃣ - Linting and Formatting
 
 In this task, we will ensure your codebase follows a consistent style and adheres to best practices using a linter called Ruff. Linters help identify and fix common issues in your code, making it more readable and maintainable.
-
-Steps:
 
 1. Add Ruff to the Project
    - Use Poetry to add Ruff as a development dependency:
@@ -220,7 +218,7 @@ You can easily add a license file directly in your repository on GitHub. Follow 
    - In the **"Name your file..."** field, type `LICENSE`.
 
 4. **Choose a License Template**
-   - At the top right of the editor, click **"Choose a license template"**.
+   - At the top left of the editor, click **"Choose a license template"**.
    - Select the **MIT License** from the list.
 
 5. **Customize the License**
@@ -241,13 +239,93 @@ You can easily add a license file directly in your repository on GitHub. Follow 
 
 #### 6️⃣ - Write Tests
 
-*(Coming soon.)*
+For this task, you are going to implement some unit testing to check that you code works as intented, and allow you to detect when modifications introduce bugs and break retro compatibility.
 
+1. Setup the testing part of your repository
+   - Create a `tests` folder, and a `tests/tests.py` file.
+   - Add `unitest` to the development dependency group (same command as in task4.1).
+
+2. Create testing classes inheriting unitest.TestCase, and implements methods that will assess whether the code behaves as expected.
+   - You can use the following code as inspiration, and implement as many as you want, but make sure that your assertions are correct!
+
+```python
+import unittest
+import numpy as np
+from src.opticaldisp.waveforms import (
+    generate_gaussian,
+    generate_square,
+    generate_lorentzian,
+    generate_sech,
+)
+
+class TestWaveforms(unittest.TestCase):
+    """ 
+    Class that implements testing for the waveform generating functions in src/opticaldisp/waveform.py.
+    """
+
+    def setUp(self):
+        """ Create a time array and set the pulse width of the waveform to be generated """
+        self.t = np.linspace(-5, 5, 1000)  # Time vector
+        self.pulsewidth = 1  # Pulse width for testing
+
+    def test_generate_gaussian(self):
+        """ Check that the maximum of the gaussian waveform with pulswidth 1 is almost equal to 1 at 5 decimal places of precision """
+        waveform = generate_gaussian(self.t, self.pulsewidth)
+        self.assertAlmostEqual(np.max(waveform), 1, places=5) 
+
+    def test_generate_square(self):
+        """ Check that all the values of the square waveform are either 0 or 1 """
+        waveform = generate_square(self.t, self.pulsewidth)
+        self.assertTrue(np.all((waveform == 0) | (waveform == 1)))
+
+    def test_generate_lorentzian(self):
+        """ Check that the maximum of the lorentizian is almost equal to 1 at 5 decimal places of precision """
+        waveform = generate_lorentzian(self.t, self.pulsewidth)
+        self.assertAlmostEqual(np.max(waveform), 1, places=5)
+
+    def test_generate_sech(self):
+        """ Check that the maximum of the sech is almost equal to 1 at 5 decimal places of precision """
+        waveform = generate_sech(self.t, self.pulsewidth)
+        self.assertAlmostEqual(np.max(waveform), 1, places=5)
+   ```
+
+3. Commit and push changes:  
+   ```bash
+   git status  
+   git add .  
+   git commit -m "test: add unit tests for waveforms module"  
+   git push
+   ```
 ---
 
 #### 7️⃣ - Check Completion and Submit
 
-*(Coming soon.)*
+> [!TIP] 
+> The final repository structure should look like this:  
+
+```plaintext
+├── tsw01
+│   ├── src
+│   │   ├── opticaldisp
+│   │   │   ├── waveforms.py
+│   │   │   ├── optical_signals.py
+│   │   │   ├── dispersion.py
+│   ├── tests
+│   │   ├── tests.py
+│   ├── .github
+│   │   ├── workflows
+│   │   │   ├── autograding.yml
+│   ├── main.py
+│   ├── README.md
+│   ├── LICENCE
+│   ├── .gitignore
+│   ├── pyproject.toml
+│   ├── poetry.lock
+```
+
+If you did each task correctly, all of the checks in the pull request main->feedback should be green. You can go ahead and merge the pull request.
+
+**Congratulations on finishing this lab!** 🥳
 
 ---
 
@@ -260,7 +338,7 @@ You can easily add a license file directly in your repository on GitHub. Follow 
 
 > **[!TIP]**  
 > - Found a bug? [Open an issue](https://github.com/UCL-Photonics-Society/TSW01-REPRODUCIBLE-OPEN-SOURCE/issues).  
-> - Have ideas? *Fork* the repository, implement your changes, and submit a pull request with a changelog.
+> - Have improvements ideas? *Fork* the repository, implement your changes, and submit a pull request with a changelog.
 
 ---
 
