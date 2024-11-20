@@ -172,7 +172,7 @@ Make the repository modular, following best practices:
 
 In this task, we will ensure your codebase follows a consistent style and adheres to best practices using a linter called Ruff. Linters help identify and fix common issues in your code, making it more readable and maintainable.
 
-1. Add Ruff to the Project
+1. Add Ruff to the Project as a development dependencies
    - Use Poetry to add Ruff as a development dependency:
 ```bash
 poetry add ruff --group dev
@@ -336,7 +336,7 @@ If you did each task correctly, all of the checks in the pull request main->feed
 - [David Gerard](https://github.com/David-GERARD) - PhD student @ UCL  
 - [Mikulas Poul](https://github.com/mikicz) - Staff engineer @ Xelix  
 
-> **[!TIP]**  
+> [!TIP]
 > - Found a bug? [Open an issue](https://github.com/UCL-Photonics-Society/TSW01-REPRODUCIBLE-OPEN-SOURCE/issues).  
 > - Have improvements ideas? *Fork* the repository, implement your changes, and submit a pull request with a changelog.
 
