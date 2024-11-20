@@ -29,8 +29,6 @@ Step-by-step, we are going to restructure this project in order to make it compl
 > [!TIP]
 > We have created an autograding script that allows you to visualise your progress. To do so, simply go to the open Pull request `main->feedback` created in task#0.
 
-
-
 ### Tasks
 
 #### 0️⃣ - Initialise the lab
@@ -41,10 +39,41 @@ Step-by-step, we are going to restructure this project in order to make it compl
   * From your forked repository, click on `main -> view all branches -> new branch`, and name the new branch `feedback`.
   * Create a pull request in your forked repository from branch `main` to branch `feedback`. Do not close it now!
 
+#### 1️⃣ - Clone the repository on your computer
+* On the main page of your Fork / GitHub Classroom assignment, click on `Code->Copy URL to Clipboard`.
+* Open a terminal on your machine, navigate to where you want to save the lab, and run the command `git clone <replace this with repository url>`
+
+#### 2️⃣ - Setup a virtual environment and build a list of dependencies with Poetry
+Currently, this project has nothing in place to guarentee reproducibility of code execussion. To solve this, we are going to use the amazing tool `poetry`.
+
+* In the terminal on your machine, run the command `pip install poetry` to install poetry with your base version of python.
+* Navigate to the root of the lab's repository, and run the command `ls` to check that you are in the right place (you should see .gitignore, README.md...)
+* Run the command `poetry init` to setup poetry for this project, and follow these instructions:
+  * For `Package name`, enter `opticaldisp` and press enter.
+  * For `Version`, enter `0.0.1` and press enter.
+  * For `Description`, enter a very short description of what this project is and press enter.
+  * For `Author` and `Licence`, press enter.
+  * For `Compatible Python versions`, enter `^3.<your_verison_of_python>`. You can check which version of python you have installed by runing the command `python --version` in another terminal window.
+  * For the two dependancies questions, enter `no`.
+
+>[!TIP]
+> At this stage, you should see that a `pyproject.toml` configuration file has been created containing your project's information.
+
+Now, we're gonna add dependancies to the `pyproject.toml` using poetry.
+
+* By going through the python code, identify all the dependencies (eg: `numpy`, `matplolib`...) used.
+* For each of these dependances, run the command `poetry add <package_name>`.
+* Check that everything is working by running `poetry run python main.py`.
+
+>[!TIP]
+> At this stage, you should see that a `poetry.lock` file has been created containing a snapshot of the exact versions of the dependencies (and their transitive dependencies) required to run your project.
+> If you have run `main.py`, you should also see that two figures have been created.
+
+* Use the git commands `git status`, `git add`, `git commit -n"<commit message here>"` and `git push` to upload your changes to GitHub. Remeber to use the [git standard commit messages](https://gist.github.com/qoomon/5dfcdf8eec66a051ecd85625518cfd13)!
 
 
-#### 1️⃣ - Restructure repository 
-In this task, you must restructure the repository following the best practice of python package structure for a librairy. We will call this librairy `opticaldisp`.
+#### 3️⃣ - Restructure repository 
+In this task, you must restructure the repository following the best practice of python package structure for a librairy. We will call this librairy `opticaldisp`. 
 
 >[!CAUTION]
 > The folder `.github/workflows/` contains the autograding script that assesses your progression and displays it in the pull request, it must not be modified.
@@ -78,19 +107,19 @@ For this task to be completed, you must be able to run `python main.py` without 
 │   ├── .gitignore
 ```
 
-#### 2️⃣ - Build a list of dependencies with Poetry
-
-#### 3️⃣ - Linting and formatting
 
 
+#### 4️⃣ - Linting and formatting
 
-#### 4️⃣ - Add a LICENCE file
+
+
+#### 5️⃣ - Add a LICENCE file
 *TBD*
 
-#### 5️⃣ - Write tests 
+#### 6️⃣ - Write tests 
 *TBD*
 
-#### 6️⃣ - Check completion and submit
+#### 7️⃣ - Check completion and submit
 *TBD*
 
 ## Contributions
