@@ -88,9 +88,9 @@ In this task, you must restructure the repository following the best practice of
   * In `main.py`, import the functions and classes you moved to `waveform.py`, `dispersion.py`, and `optical_signals.py`. For example, if you want to import the class `OpticalSignal` in `main.py`, use `from src.opticaldisp.optical_signals import OpticalSignal`
  
 >[!TIP]
-> Run `python main.py` to check if you have handled imports successfully.
+> Run `poetry run python main.py` to check if you have handled imports successfully.
 
-For this task to be completed, you must be able to run `python main.py` without errors, and the repository must have the following structure:
+For this task to be completed, you must be able to run `poetry run python main.py` without errors, and the repository must have the following structure:
 
 ```plaintext
 ├── tsw01
@@ -105,6 +105,8 @@ For this task to be completed, you must be able to run `python main.py` without 
 │   ├── main.py
 │   ├── README.md
 │   ├── .gitignore
+│   ├── pyproject.toml
+│   ├── poetry.lock
 ```
 
 
