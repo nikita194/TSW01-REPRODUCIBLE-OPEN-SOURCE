@@ -170,7 +170,38 @@ Make the repository modular, following best practices:
 
 #### 4️⃣ - Linting and Formatting
 
-*(Coming soon.)*
+In this task, we will ensure your codebase follows a consistent style and adheres to best practices using a linter called Ruff. Linters help identify and fix common issues in your code, making it more readable and maintainable.
+
+Steps:
+
+1. Add Ruff to the Project
+   - Use Poetry to add Ruff as a development dependency:
+```bash
+poetry add ruff --group dev
+```
+
+2. Check your code for linting issues by running:
+   - Ruff will output a list of issues with line numbers and suggested fixes.
+```bash
+poetry run ruff check .
+```
+
+3. Fix Issues by either:
+   - Edit your files to address these issues, or
+   - Automatically fix the issues by running:
+```bash
+poetry run ruff check . --fix
+```
+4. Commit Your Changes
+   - Once all issues are resolved, commit your changes:
+
+```bash
+git add .
+git commit -m "style: apply linting fixes using Ruff"
+git push
+```
+
+
 
 ---
 
