@@ -1,0 +1,83 @@
+name: Assignment Autograding
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  autograde:
+    name: Autograding Tasks
+    runs-on: ubuntu-latest
+
+    steps:
+    # Checkout the repository
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    # Set up Python
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: 3.10
+
+    # Install Poetry
+    - name: Install Poetry
+      run: |
+        curl -sSL https://install.python-poetry.org | python3 -
+        export PATH="$HOME/.local/bin:$PATH"
+
+    # Install dependencies
+    - name: Install dependencies
+      run: |
+        poetry install --with dev
+
+    # Task 2: Verify Poetry setup
+    - name: Check Poetry setup
+      run: test -f poetry.lock && echo "Poetry setup complete."
+      id: task2
+      continue-on-error: false
+
+    # Task 3: Verify repository restructuring
+    - name: Check repository structure
+      run: |
+        test -f src/opticaldisp/waveforms.py
+        test -f src/opticaldisp/optical_signals.py
+        test -f src/opticaldisp/dispersion.py
+        echo "Repository restructuring complete."
+      id: task3
+      continue-on-error: false
+
+    # Task 4: Check code linting with Ruff
+    - name: Check linting
+      run: poetry run ruff check .
+      id: task4
+      continue-on-error: false
+
+    # Task 5: Verify LICENSE file
+    - name: Check LICENSE file
+      run: test -f LICENSE && echo "LICENSE file added."
+      id: task5
+      continue-on-error: false
+
+    # Task 6: Verify test implementation
+    - name: Run unit tests
+      run: |
+        test -f tests/tests.py
+        poetry run python -m unittest discover tests
+      id: task6
+      continue-on-error: false
+
+    # Task 7: Final structure check
+    - name: Check final structure
+      run: |
+        test -d src/opticaldisp
+        test -d tests
+        echo "Final structure verified."
+      id: task7
+      continue-on-error: false
+
+    # Provide progress in pull request
+    - name: Update PR status
+      if: success()
+      run: echo "All tasks passed! 🎉"
