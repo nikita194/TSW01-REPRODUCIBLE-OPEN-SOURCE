@@ -6,76 +6,88 @@ on:
       - main
 
 jobs:
-  autograde:
-    name: Autograding Tasks
+  grading:
+    name: Check Assignment Progress
     runs-on: ubuntu-latest
 
     steps:
-    # Checkout the repository
-    - name: Checkout repository
+    # Step 1: Checkout the repository
+    - name: Checkout Repository
       uses: actions/checkout@v3
 
-    # Set up Python
-    - name: Set up Python
+    # Step 2: Set up Python
+    - name: Setup Python
       uses: actions/setup-python@v4
       with:
-        python-version: 3.10
+        python-version: "3.10"
 
-    # Install Poetry
+    # Step 3: Install Poetry
     - name: Install Poetry
       run: |
-        curl -sSL https://install.python-poetry.org | python3 -
-        export PATH="$HOME/.local/bin:$PATH"
+        python -m pip install --upgrade pip
+        pip install poetry
 
-    # Install dependencies
-    - name: Install dependencies
+    # Step 4: Install Dependencies
+    - name: Install Dependencies
       run: |
-        poetry install --with dev
+        poetry install
 
-    # Task 2: Verify Poetry setup
-    - name: Check Poetry setup
-      run: test -f poetry.lock && echo "Poetry setup complete."
-      id: task2
-      continue-on-error: false
-
-    # Task 3: Verify repository restructuring
-    - name: Check repository structure
+    # Check Task 2: Poetry Setup
+    - name: Task 2: Poetry Setup
       run: |
-        test -f src/opticaldisp/waveforms.py
-        test -f src/opticaldisp/optical_signals.py
-        test -f src/opticaldisp/dispersion.py
-        echo "Repository restructuring complete."
-      id: task3
-      continue-on-error: false
+        if [ -f "pyproject.toml" ] && [ -f "poetry.lock" ]; then
+          echo "Poetry setup verified."
+        else
+          echo "Error: Poetry files not found."
+          exit 1
+        fi
 
-    # Task 4: Check code linting with Ruff
-    - name: Check linting
-      run: poetry run ruff check .
-      id: task4
-      continue-on-error: false
-
-    # Task 5: Verify LICENSE file
-    - name: Check LICENSE file
-      run: test -f LICENSE && echo "LICENSE file added."
-      id: task5
-      continue-on-error: false
-
-    # Task 6: Verify test implementation
-    - name: Run unit tests
+    # Check Task 3: Restructured Repository
+    - name: Task 3: Restructure Repository
       run: |
-        test -f tests/tests.py
-        poetry run python -m unittest discover tests
-      id: task6
-      continue-on-error: false
+        if [ -d "src/opticaldisp" ] && [ -f "src/opticaldisp/waveforms.py" ] && [ -f "src/opticaldisp/optical_signals.py" ] && [ -f "src/opticaldisp/dispersion.py" ]; then
+          echo "Repository structure verified."
+        else
+          echo "Error: Restructured repository files missing."
+          exit 1
+        fi
 
-    # Task 7: Final structure check
-    - name: Check final structure
+    # Check Task 4: Linting with Ruff
+    - name: Task 4: Linting with Ruff
       run: |
-        test -d src/opticaldisp
-        test -d tests
-        echo "Final structure verified."
-      id: task7
-      continue-on-error: false
+        poetry run ruff check . || exit 1
+
+    # Check Task 5: LICENSE File
+    - name: Task 5: LICENSE File
+      run: |
+        if [ -f "LICENSE" ]; then
+          echo "LICENSE file verified."
+        else
+          echo "Error: LICENSE file not found."
+          exit 1
+        fi
+
+    # Check Task 6: Unit Tests
+    - name: Task 6: Unit Tests
+      run: |
+        if [ -d "tests" ] && [ -f "tests/tests.py" ]; then
+          poetry run pytest tests || exit 1
+        else
+          echo "Error: Unit tests not implemented."
+          exit 1
+        fi
+
+    # Check Task 7: Final Repository Structure
+    - name: Task 7: Final Repository Structure
+      run: |
+        REQUIRED_FILES="README.md LICENSE src/opticaldisp/waveforms.py src/opticaldisp/optical_signals.py src/opticaldisp/dispersion.py tests/tests.py"
+        for FILE in $REQUIRED_FILES; do
+          if [ ! -f "$FILE" ]; then
+            echo "Error: $FILE is missing."
+            exit 1
+          fi
+        done
+        echo "Final repository structure verified."
 
     # Provide progress in pull request
     - name: Update PR status
