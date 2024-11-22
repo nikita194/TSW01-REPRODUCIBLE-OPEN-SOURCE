@@ -89,7 +89,7 @@ Currently, the project lacks reproducibility. Let’s fix that with **Poetry**:
    - **Version**: `0.0.1`  
    - **Description**: Add a short description.  
    - **Author/License**: Press Enter to skip.  
-   - **Python versions**: Enter `^3.<your_version>` (check with `python --version`).  
+   - **Python versions**: Enter `^3.<your_version>` (at least 3.10).  
    - For dependencies: Enter `no` for both.
 
 > [!TIP]
