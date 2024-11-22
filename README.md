@@ -246,13 +246,13 @@ For this task, you are going to implement some unit testing to check that you co
 
 1. Setup the testing part of your repository
    - Create a `tests` folder, and a `tests/tests.py` file.
-   - Add `unitest` to the development dependency group (same command as in task4.1).
+   - Add `pytest` to the development dependency group (same command as in task4.1).
 
-2. Create testing classes inheriting unitest.TestCase, and implements methods that will assess whether the code behaves as expected.
+2. Create testing functions, and implements methods that will assess whether the code behaves as expected.
    - You can use the following code as inspiration, and implement as many as you want, but make sure that your assertions are correct!
 
 ```python
-import unittest
+import pytest
 import numpy as np
 from src.opticaldisp.waveforms import (
     generate_gaussian,
@@ -261,42 +261,44 @@ from src.opticaldisp.waveforms import (
     generate_sech,
 )
 
-class TestWaveforms(unittest.TestCase):
-    """ 
-    Class that implements testing for the waveform generating functions in src/opticaldisp/waveform.py.
-    """
+@pytest.fixture # Pytest method that provide a fixed baseline for tests to run on top of
+def setup_waveform():
+    """Fixture to create a time array and set the pulse width of the waveform."""
+    t = np.linspace(-5, 5, 1000)  # Time vector
+    pulsewidth = 1  # Pulse width for testing
+    return t, pulsewidth
 
-    def setUp(self):
-        """ Create a time array and set the pulse width of the waveform to be generated """
-        self.t = np.linspace(-5, 5, 1000)  # Time vector
-        self.pulsewidth = 1  # Pulse width for testing
+def test_generate_gaussian(setup_waveform):
+    """Check that the maximum of the Gaussian waveform with pulse width 1 is almost equal to 1 at 5 decimal places."""
+    t, pulsewidth = setup_waveform
+    waveform = generate_gaussian(t, pulsewidth)
+    assert np.isclose(np.max(waveform), 1, atol=1e-5)
 
-    def test_generate_gaussian(self):
-        """ Check that the maximum of the gaussian waveform with pulswidth 1 is almost equal to 1 at 5 decimal places of precision """
-        waveform = generate_gaussian(self.t, self.pulsewidth)
-        self.assertAlmostEqual(np.max(waveform), 1, places=5) 
+def test_generate_square(setup_waveform):
+    """Check that all the values of the square waveform are either 0 or 1."""
+    t, pulsewidth = setup_waveform
+    waveform = generate_square(t, pulsewidth)
+    assert np.all((waveform == 0) | (waveform == 1))
 
-    def test_generate_square(self):
-        """ Check that all the values of the square waveform are either 0 or 1 """
-        waveform = generate_square(self.t, self.pulsewidth)
-        self.assertTrue(np.all((waveform == 0) | (waveform == 1)))
+def test_generate_lorentzian(setup_waveform):
+    """Check that the maximum of the Lorentzian is almost equal to 1 at 5 decimal places."""
+    t, pulsewidth = setup_waveform
+    waveform = generate_lorentzian(t, pulsewidth)
+    assert np.isclose(np.max(waveform), 1, atol=1e-5)
 
-    def test_generate_lorentzian(self):
-        """ Check that the maximum of the lorentizian is almost equal to 1 at 5 decimal places of precision """
-        waveform = generate_lorentzian(self.t, self.pulsewidth)
-        self.assertAlmostEqual(np.max(waveform), 1, places=5)
+def test_generate_sech(setup_waveform):
+    """Check that the maximum of the Sech is almost equal to 1 at 5 decimal places."""
+    t, pulsewidth = setup_waveform
+    waveform = generate_sech(t, pulsewidth)
+    assert np.isclose(np.max(waveform), 1, atol=1e-5)
 
-    def test_generate_sech(self):
-        """ Check that the maximum of the sech is almost equal to 1 at 5 decimal places of precision """
-        waveform = generate_sech(self.t, self.pulsewidth)
-        self.assertAlmostEqual(np.max(waveform), 1, places=5)
    ```
 
 3. Commit and push changes:  
    ```bash
    git status  
    git add .  
-   git commit -m "test: add unit tests for waveforms module"  
+   git commit -m "test: add tests for waveforms module"  
    git push
    ```
 ---
