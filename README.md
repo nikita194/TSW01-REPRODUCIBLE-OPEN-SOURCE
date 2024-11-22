@@ -131,7 +131,10 @@ Make the repository modular, following best practices:
 
 3. **Update imports**:  
    - Add necessary imports to each new file.  
-   - In `main.py`, import from `src.opticaldisp`.
+   - In `main.py`, imports all functions needed. Example:
+     ```python
+      from src.opticaldisp.waveforms import generate_gaussian
+     ```
 
 4. Test the new structure:  
    ```bash
