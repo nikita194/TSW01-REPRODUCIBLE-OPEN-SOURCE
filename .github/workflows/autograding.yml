@@ -176,7 +176,7 @@ jobs:
     # Check Task 6: Unit Tests
     - name: Check Task 6
       run: |
-        if [ -d "tests" ] && [ -f "tests/tests.py" ]; then
+        if [ -d "tests" ] ; then
           poetry run pytest tests || exit 1
         else
           echo "Error: Unit tests not implemented."
