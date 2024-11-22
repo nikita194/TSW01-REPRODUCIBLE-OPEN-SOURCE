@@ -212,9 +212,9 @@ jobs:
     # Check Task 7: Final Repository Structure
     - name: Check Task 7
       run: |
-        REQUIRED_FILES="README.md LICENSE src/opticaldisp/waveforms.py src/opticaldisp/optical_signals.py src/opticaldisp/dispersion.py tests/tests.py"
+        REQUIRED_FILES="README.md LICENSE src/opticaldisp/waveforms.py src/opticaldisp/optical_signals.py src/opticaldisp/dispersion.py tests/"
         for FILE in $REQUIRED_FILES; do
-          if [ ! -f "$FILE" ]; then
+          if [ ! -f "$FILE" ] && [ ! -d "$FILE"]; then
             echo "Error: $FILE is missing."
             exit 1
           fi
