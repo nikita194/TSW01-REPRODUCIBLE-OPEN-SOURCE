@@ -234,6 +234,9 @@ You can easily add a license file directly in your repository on GitHub. Follow 
      ```
    - Select **"Commit directly to the main branch"**.
    - Click **"Commit new file"**.
+     
+7. **Pull the changes to your local repository**
+   - Run `git pull` to update your local repository with the LICENCE file.
 
 ---
 
