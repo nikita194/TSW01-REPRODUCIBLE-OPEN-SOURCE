@@ -162,7 +162,7 @@ Make the repository modular, following best practices:
    ```bash
    git status  
    git add .  
-   git commit -m "chore: setup Poetry and dependencies"  
+   git commit -m "refactor: change project structure"  
    git push
    ```
 
