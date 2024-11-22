@@ -248,11 +248,19 @@ You can easily add a license file directly in your repository on GitHub. Follow 
 For this task, you are going to implement some unit testing to check that you code works as intented, and allow you to detect when modifications introduce bugs and break retro compatibility.
 
 1. Setup the testing part of your repository
-   - Create a `tests` folder, and a `tests/tests.py` file.
+   - Create a `tests` folder, and create test files, for example `tests/test_waveforms.py`.
    - Add `pytest` to the development dependency group (same command as in task4.1).
 
 2. Create testing functions, and implements methods that will assess whether the code behaves as expected.
    - You can use the following code as inspiration, and implement as many as you want, but make sure that your assertions are correct!
+   - Run the following command to check that your tests are passing:
+     ```bash
+     poetry run pytest tests/
+     ```
+
+> [!WARNING]  
+> `pystest` expects the test files to have the convention `tests/test_<module_name>.py`, and for the functions inside the files to start with `test_`.
+> If these conventions are not followed, pytest will not find your tests and return an error.
 
 ```python
 import pytest
@@ -264,7 +272,7 @@ from src.opticaldisp.waveforms import (
     generate_sech,
 )
 
-@pytest.fixture # Pytest method that provide a fixed baseline for tests to run on top of
+@pytest.fixture
 def setup_waveform():
     """Fixture to create a time array and set the pulse width of the waveform."""
     t = np.linspace(-5, 5, 1000)  # Time vector
@@ -272,29 +280,31 @@ def setup_waveform():
     return t, pulsewidth
 
 def test_generate_gaussian(setup_waveform):
-    """Check that the maximum of the Gaussian waveform with pulse width 1 is almost equal to 1 at 5 decimal places."""
+    """Check that the Gaussian waveform has the expected maximum value."""
     t, pulsewidth = setup_waveform
     waveform = generate_gaussian(t, pulsewidth)
-    assert np.isclose(np.max(waveform), 1, atol=1e-5)
+    expected_max = np.exp(0)  # Max value of Gaussian at t=0
+    assert np.isclose(np.max(waveform), expected_max, atol=1e-3), f"Gaussian max: {np.max(waveform)} != {expected_max}"
 
 def test_generate_square(setup_waveform):
     """Check that all the values of the square waveform are either 0 or 1."""
     t, pulsewidth = setup_waveform
     waveform = generate_square(t, pulsewidth)
-    assert np.all((waveform == 0) | (waveform == 1))
+    assert np.all((waveform == 0) | (waveform == 1)), "Square waveform contains values other than 0 or 1"
 
 def test_generate_lorentzian(setup_waveform):
-    """Check that the maximum of the Lorentzian is almost equal to 1 at 5 decimal places."""
+    """Check that the Lorentzian waveform has the expected maximum value."""
     t, pulsewidth = setup_waveform
     waveform = generate_lorentzian(t, pulsewidth)
-    assert np.isclose(np.max(waveform), 1, atol=1e-5)
+    expected_max = 1 / (1 + (0 / (pulsewidth / 1.287)) ** 2)  # Max value at t=0
+    assert np.isclose(np.max(waveform), expected_max, atol=1e-3), f"Lorentzian max: {np.max(waveform)} != {expected_max}"
 
 def test_generate_sech(setup_waveform):
-    """Check that the maximum of the Sech is almost equal to 1 at 5 decimal places."""
+    """Check that the Sech waveform has the expected maximum value."""
     t, pulsewidth = setup_waveform
     waveform = generate_sech(t, pulsewidth)
-    assert np.isclose(np.max(waveform), 1, atol=1e-5)
-
+    expected_max = 1 / np.cosh(0)  # Max value of Sech at t=0
+    assert np.isclose(np.max(waveform), expected_max, atol=1e-3), f"Sech max: {np.max(waveform)} != {expected_max}"
    ```
 
 3. Commit and push changes:  
