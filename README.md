@@ -182,8 +182,8 @@ poetry add ruff --group dev
 ```
 
 2. Add Ruff rules to the `pyproject.toml` file
-   - By default, Ruff doesn't have any formatting rules, so we need to select those we want to apply out of the [list of rules](https://docs.astral.sh/ruff/rules/).
-   - Open `pyproject.toml` and add the following rules:
+   - Formatting rules dictate the style of your code, keep in mind that it is up to you to decide which to enforce for your projects. By default, Ruff doesn't have any formatting rules, so we need to select those we want to apply. 
+   - Open `pyproject.toml` and add the following rules (you can find what they mean [here](https://docs.astral.sh/ruff/rules/)):
    ```toml
    [tool.ruff]
    [tool.ruff.lint]
@@ -206,19 +206,22 @@ poetry add ruff --group dev
    ```
 
 3. Check your code for linting issues by running:
-   - Ruff will output a list of issues with line numbers and suggested fixes.
+   - Ruff will output a list of issues with line numbers and suggested fixes. 
 ```bash
 poetry run ruff check .
 ```
 
-4. Fix Issues by either:
-   - Edit your files to address these issues, or
-   - Automatically fix the issues by running:
-```bash
-poetry run ruff check . --fix
-```
+4. Fix the formatting issues:
+   - Run the following command and notice that many errors were fixed automatically:
+   ```bash
+   poetry run ruff format
+   ```
+   - Look at the error log and fix all remaining issues by edditing the files manually.
+   
+
+
 5. Commit Your Changes
-   - Once all issues are resolved, commit your changes:
+   - Once running ruff format stops returning errors because all issues have been resolved, commit your changes:
 
 ```bash
 git add .
