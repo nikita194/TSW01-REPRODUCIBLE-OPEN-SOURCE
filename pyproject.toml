@@ -1,2 +1,2 @@
-[tool.poetry.dependencies.python]
+[tool.poetry.dependencies]
 version = "3.12"
