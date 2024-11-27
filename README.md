@@ -177,9 +177,9 @@ In this task, we will ensure your codebase follows a consistent style and adhere
 
 1. Add Ruff to the Project as a development dependencies
    - Use Poetry to add Ruff as a development dependency:
-```bash
-poetry add ruff --group dev
-```
+   ```bash
+   poetry add ruff --group dev
+   ```
 
 2. Add Ruff rules to the `pyproject.toml` file
    - Formatting rules dictate the style of your code, keep in mind that it is up to you to decide which to enforce for your projects. By default, Ruff doesn't have any formatting rules, so we need to select those we want to apply. 
@@ -205,9 +205,9 @@ poetry add ruff --group dev
 
 3. Check your code for linting issues by running:
    - Ruff will output a list of issues with line numbers and suggested fixes. 
-```bash
-poetry run ruff check .
-```
+   ```bash
+   poetry run ruff check .
+   ```
 
 4. Fix the formatting issues:
    - Run the following command and notice that many errors were fixed automatically:
@@ -221,11 +221,11 @@ poetry run ruff check .
 5. Commit Your Changes
    - Once running ruff format stops returning errors because all issues have been resolved, commit your changes:
 
-```bash
-git add .
-git commit -m "style: apply linting fixes using Ruff"
-git push
-```
+   ```bash
+   git add .
+   git commit -m "style: apply linting fixes using Ruff"
+   git push
+   ```
 
 ---
 
