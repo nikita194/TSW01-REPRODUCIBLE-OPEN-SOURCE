@@ -330,6 +330,15 @@ def test_generate_sech(setup_waveform):
     assert np.isclose(np.max(waveform), expected_max, atol=1e-3), f"Sech max: {np.max(waveform)} != {expected_max}"
    ```
 
+> [!TIP]
+> If running `poetry run pytest tests/` returns a `ModuleNotFoundError`, you can fix it by adding the following to `pyproject.toml`:
+> ```yaml
+> [tool.pytest.ini_options]
+>  pythonpath = [
+>    ".", "src",
+>  ]
+> ```
+
 3. Commit and push changes:  
    ```bash
    git status  
