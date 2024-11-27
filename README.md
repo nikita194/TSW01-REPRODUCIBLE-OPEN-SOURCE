@@ -1,6 +1,8 @@
 
 # [Transferable Skills Workshops] - Good Practices for Reproducible Open Source Code
 
+
+
 ---
 
 ## Why this Workshop?
@@ -21,6 +23,26 @@ This leads to higher-quality work and fosters collaboration, allowing others to 
 - Restructure repositories using best practices.
 - Create and integrate a LICENSE file for open-source compliance.
 - Develop and execute unit tests to ensure code reliability.
+  
+---
+
+## Table of Contents
+- [Prerequisites](#prerequisites)
+- [Lab Instructions](#lab-instructions)
+   - [How Does the Lab Work?](#how-does-the-lab-work)
+   - [Tasks](#tasks)
+      - [0️⃣ - Initialize the Lab](#0️⃣---initialize-the-lab)
+      - [1️⃣ - Clone the Repository Locally](#1️⃣---clone-the-repository-locally)
+      - [2️⃣ - Setup a Virtual Environment and Manage Dependencies with Poetry](#2️⃣---setup-a-virtual-environment-and-manage-dependencies-with-poetry)
+      - [3️⃣ - Restructure the Repository](#3️⃣---restructure-the-repository)
+      - [4️⃣ - Linting and Formatting](#4️⃣---linting-and-formatting)
+      - [5️⃣ - Add a LICENSE File](#5️⃣---add-a-license-file)
+      - [6️⃣ - Write Tests](#6️⃣---write-tests)
+      - [7️⃣ - Check Completion and Submit](#7️⃣---check-completion-and-submit)
+- [Contributions](#contributions)
+   - [Contributors](#contributors)
+   - [Maintainers](#maintainers)
+
 
 ---
 
