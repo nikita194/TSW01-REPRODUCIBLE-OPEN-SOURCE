@@ -1,0 +1,2 @@
+[tool.python]
+version = "ˆ3.12"
