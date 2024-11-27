@@ -198,8 +198,6 @@ poetry add ruff --group dev
        "B",
        # flake8-simplify
        "SIM",
-       # isort
-       "I",
        # pep8-naming
        "N",
    ]
