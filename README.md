@@ -107,17 +107,7 @@ Currently, the project lacks reproducibility. Let’s fix that with **Poetry**:
 > [!TIP]
 > You should now see a `poetry.lock` file and generated figures.
 
-6. For the autograding code to work, you need to open `pyproject.toml` and add the following at the top of the file:
-   ```yaml
-   [tool.python]
-   version = "<version of python declared in task 2.3>"
-   ```
-
-> [!NOTE]
-> Task 4.6 is only for this workshop's autograding code to run successfully, in practice you do not need to do this.
-
-
-7. Commit and push changes:  
+6. Commit and push changes:  
    ```bash
    git status  
    git add .  
