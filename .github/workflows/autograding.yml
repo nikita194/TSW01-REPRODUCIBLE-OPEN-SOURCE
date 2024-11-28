@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - '**'
-
+  
 jobs:
   autograding:
     name: Autograding
@@ -22,24 +22,20 @@ jobs:
         python-version-file: 'pyproject.toml' # Read python version from a file pyproject.toml
         cache: 'pip'
 
-
     # Check Task 2: Poetry Setup
     - name: Check Task 2
       run: |
         python --version
         python -m pip install --upgrade pip
         pip install poetry
-
-        poetry install
         
         if [ -f "pyproject.toml" ] && [ -f "poetry.lock" ]; then
           echo "Poetry setup verified."
+          poetry install
         else
           echo "Error: Poetry files not found."
           exit 1
         fi
-
-
     # Check Task 3: Restructured Repository
     - name: Check Task 3
       run: |
@@ -49,14 +45,10 @@ jobs:
           echo "Error: Restructured repository files missing."
           exit 1
         fi
-
-
     # Check Task 4: Linting with Ruff
     - name: Check Task 4
       run: |
         poetry run ruff check . || exit 1
-
-
     # Check Task 5: LICENSE File
     - name: Check Task 5
       run: |
@@ -67,7 +59,6 @@ jobs:
           exit 1
         fi
         
-
     # Check Task 6: Unit Tests
     - name: Check Task 6
       run: |
@@ -78,7 +69,6 @@ jobs:
           exit 1
         fi
         
-
     # Check Task 7: Final Repository Structure
     - name: Check Task 7
       run: |
@@ -90,7 +80,6 @@ jobs:
           fi
         done
         echo "Final repository structure verified."
-
     # Provide progress in pull request
     - name: Update PR status
       if: success()
