@@ -202,10 +202,10 @@ if __name__ == '__main__':
         dpulse_s = apply_dispersion(pulse_s, CD)
         dpulse_sq = apply_dispersion(pulse_sq, CD)
         
-        gvec[i, :] = dpulse_g.Pt
-        lvec[i, :] = dpulse_l.Pt
-        svec[i, :] = dpulse_s.Pt
-        sqvec[i, :] = dpulse_sq.Pt
+        gvec[i, :] = dpulse_g.pt
+        lvec[i, :] = dpulse_l.pt
+        svec[i, :] = dpulse_s.pt
+        sqvec[i, :] = dpulse_sq.pt
 
 
     # Waterfall Plots
