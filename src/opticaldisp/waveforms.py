@@ -15,8 +15,9 @@ def generate_gaussian(t, pulsewidth):
     # Calculate tau based on the pulse width
     tau = pulsewidth / (2 * np.sqrt(np.log(2)))
     # Compute the Gaussian waveform
-    gaussian = np.exp(-t**2 / (2 * tau**2))
+    gaussian = np.exp(-(t**2) / (2 * tau**2))
     return gaussian
+
 
 def generate_square(t, pulsewidth):
     """

@@ -12,6 +12,27 @@ matplotlib = "^3.9.2"
 scipy = "^1.14.1"
 
 
+[tool.poetry.group.dev.dependencies]
+ruff = "^0.8.1"
+
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+
+[tool.ruff]
+[tool.ruff.lint]
+select = [
+    # pycodestyle
+    "E",
+    # Pyflakes
+    "F",
+    # pyupgrade
+    "UP",
+    # flake8-bugbear
+    "B",
+    # flake8-simplify
+    "SIM",
+    # pep8-naming
+    "N",
+]
