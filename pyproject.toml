@@ -14,6 +14,7 @@ scipy = "^1.14.1"
 
 [tool.poetry.group.dev.dependencies]
 ruff = "^0.8.1"
+pytest = "^8.3.3"
 
 [build-system]
 requires = ["poetry-core"]
@@ -36,3 +37,9 @@ select = [
     # pep8-naming
     "N",
 ]
+
+
+[tool.pytest.ini_options]
+ pythonpath = [
+   ".", "src",
+ ]
